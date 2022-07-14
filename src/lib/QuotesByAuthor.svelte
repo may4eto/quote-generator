@@ -24,7 +24,7 @@
 
     @media(max-width:768px) {
     div {
-        max-width: 75vw;
+        max-width: 66vw;
     }
     @media(max-width:540px) {
     div {

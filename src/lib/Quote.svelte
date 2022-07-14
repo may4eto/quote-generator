@@ -33,6 +33,7 @@
   @media(max-width:540px) {
     .quote {
         max-width: 100vw;
+        padding: 0 1rem;
     }
     blockquote {
         padding-left: 2rem;

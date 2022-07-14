@@ -57,4 +57,10 @@
         font-size: 0.6rem;
         color: var(--light-grey);
   }
+  @media(max-width: 540px) {
+    div.wrapper {
+        padding: 1rem 1rem 1rem 2rem;
+        margin: 0 1rem;
+    }
+  }
 </style>

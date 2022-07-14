@@ -52,7 +52,9 @@
       <QuotesByAuthor {quotesByAuthor}/>
     {/if}
   {:else}
-    <p>loading...</p>
+    <div class="home">
+      <p>loading...</p>
+    </div>
   {/if}
 </main>
 <Footer />

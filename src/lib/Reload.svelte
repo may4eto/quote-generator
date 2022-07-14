@@ -23,4 +23,11 @@
     .reload span {
         font-size: 0.75rem;
     }
+
+    @media(max-width:540px) {
+        .reload {
+            top: 2rem;
+            right: 2rem;
+    }
+    }
 </style>

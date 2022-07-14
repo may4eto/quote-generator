@@ -7,14 +7,25 @@
     --accent: #F7DF94;
 }
 
-:global(html) {
+html {
     font-size: 24px;
-  }
+}
 
 body {
     font-family: 'Raleway', sans-serif;
     font-weight: 500;
     line-height: 1.5;
     color: var(--black);
+}
+
+@media(max-width:768px) {
+    html {
+        font-size: 18px;
+    }
+}
+@media(max-width:540px) {
+    html {
+        font-size: 16px;
+    }
 }
 

@@ -18,6 +18,21 @@
         margin:2rem auto 6rem auto;
     }
     h1 {
+        line-height: 1.2;
         margin-bottom: 6rem;
     }
+
+    @media(max-width:768px) {
+    div {
+        max-width: 75vw;
+    }
+    @media(max-width:540px) {
+    div {
+        max-width: 100vw;
+    }
+    h1 {
+        max-width: 75%;
+    }
+  }
+  }
 </style>

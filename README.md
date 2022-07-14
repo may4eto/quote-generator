@@ -87,6 +87,6 @@ $ npm start
 
 ## Contact
 
-- Website [your-website.com](https://maya-mircheva.netlify.app)
-- GitHub [@your-username](https://github.com/may4eto)
-- Twitter [@your-twitter](https://twitter.com/maycheto)
+- Website [maya-mircheva.netlify.app](https://maya-mircheva.netlify.app)
+- GitHub [@may4eto](https://github.com/may4eto)
+- Twitter [@maycheto](https://twitter.com/maycheto)

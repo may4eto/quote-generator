@@ -10,6 +10,7 @@
 <style>
   .quote {
     max-width: 50vw;
+    margin-bottom: 2rem;
   }
   blockquote {
     font-size: 1.5rem;

@@ -15,6 +15,8 @@
 
 <style>
     .reload {
+        display: flex;
+        align-items: center;
         position: fixed;
         top: 2rem;
         right: 4rem;
@@ -22,6 +24,10 @@
     }
     .reload span {
         font-size: 0.75rem;
+        display: inline-block;
+    }
+    .reload span:first-child {
+        margin-right: 0.25rem;
     }
 
     @media(max-width:540px) {

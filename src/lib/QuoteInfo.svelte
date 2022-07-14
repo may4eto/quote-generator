@@ -38,7 +38,7 @@
         color: var(--white);
     }
     div.wrapper {
-        padding: 2rem 2rem 2rem 4rem;
+        padding: 1rem 1rem 1rem 4rem;
         display: flex;
         justify-content: space-between;
         align-items: center;

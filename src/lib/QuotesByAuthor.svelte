@@ -31,7 +31,7 @@
         max-width: 100vw;
     }
     h1 {
-        max-width: 75%;
+        max-width: 50%;
         padding: 0 1rem;
         margin-bottom: 4rem;
     }

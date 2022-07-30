@@ -3,7 +3,7 @@
   import Footer from "./lib/Footer.svelte"
   import axios from 'axios'
   import Quote from './lib/Quote.svelte'
-  import Reload from './lib/Reload.svelte'
+  import Button from './lib/Button.svelte'
   import QuoteInfo from './lib/QuoteInfo.svelte';
   import QuotesByAuthor from './lib/QuotesByAuthor.svelte'
 
@@ -46,7 +46,7 @@
 </script>
 
 <main>
-    <Reload on:reload= {reloadQuote}/>
+    <Button {quotesByAuthor} on:reload= {reloadQuote}/>
   {#if randomQuote.content}
     {#if quotesByAuthor.length === 0} 
       <div class="home">

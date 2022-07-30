@@ -4,13 +4,21 @@
     const onReload = () => {
         dispatch("reload", {})
     }
+    export let quotesByAuthor
 </script>
 
 <div class="reload" on:click={onReload}>
+    {#if quotesByAuthor.length === 0}
     <span>random</span>
     <span class="material-symbols-outlined">
         autorenew
     </span>
+    {:else}
+    <span class="material-symbols-outlined">
+        arrow_back
+    </span>
+    <span>back</span>
+    {/if}
 </div>
 
 <style>

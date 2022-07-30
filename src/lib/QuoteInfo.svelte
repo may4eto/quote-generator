@@ -1,5 +1,6 @@
 <script>
     import { createEventDispatcher } from 'svelte';
+import { toggle_class } from 'svelte/internal';
     const dispatch = createEventDispatcher();
     export let randomQuote
     const onSearchQuotesByAuthor = (event) => {
@@ -14,7 +15,11 @@
     <div class="wrapper" on:click = {onSearchQuotesByAuthor}>
         <div class="info">
             <p class="author">{randomQuote.author}</p>
-            <p class="tag">{randomQuote.tag}</p>
+            <p class="tag">
+                {#each randomQuote.tags as tag}
+                    <span>{tag}</span>
+                {/each}
+            </p>
         </div>
         <span class="material-symbols-outlined">
             arrow_right_alt
@@ -56,7 +61,11 @@
     div.info p.tag {
         font-size: 0.6rem;
         color: var(--light-grey);
-  }
+    }
+    div.info p.tag span {
+        display: inline;
+        margin-right: 0.5rem;
+    }
   @media(max-width: 540px) {
     div.wrapper {
         padding: 1rem 1rem 1rem 2rem;

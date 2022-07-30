@@ -9,19 +9,22 @@
 
   let randomQuote = {}
   let quotesByAuthor = []
-  const url = "https://goquotes-api.herokuapp.com/api/v1/"
-  const fetchQuote = async() => await axios.get(url + "random?count=1")
+  const url = "https://api.quotable.io/"
+  const fetchQuote = async() => await axios.get(url + "random", {
+    headers: {"Access-Control-Allow-Origin": "*"}
+  })
       .then(function (response) {
-        quotesByAuthor.length = 0
-	      randomQuote = response.data.quotes[0];
+	      randomQuote = response.data;
         console.log(randomQuote)
       })
       .catch(function (error) {
 	      console.error(error);
       });
-  const fetchQuotesByAuthor = async(author) => await axios.get(url + "all?type=author&val=" + author)
+  const fetchQuotesByAuthor = async(author) => await axios.get(url + "quotes?author=" + author.toLowerCase().replaceAll(' ', '-'), {
+    headers: {"Access-Control-Allow-Origin": "*"}
+  })
       .then(function (response) {
-        quotesByAuthor = [...response.data.quotes]
+        quotesByAuthor = [...response.data.results]
         console.log(quotesByAuthor)
       })
       .catch(function (error) {
@@ -31,7 +34,11 @@
      fetchQuote()
   })
   const reloadQuote = () => {
-    fetchQuote()
+    if (quotesByAuthor.length > 0) {
+      quotesByAuthor.length = 0
+    } else {
+      fetchQuote()
+    }
   }
   const searchQuotesByAuthor = (event) => {
     fetchQuotesByAuthor(event.detail.text)
@@ -40,11 +47,11 @@
 
 <main>
     <Reload on:reload= {reloadQuote}/>
-  {#if randomQuote.text}
+  {#if randomQuote.content}
     {#if quotesByAuthor.length === 0} 
       <div class="home">
         <div>
-          <Quote>{randomQuote.text}</Quote>
+          <Quote>{randomQuote.content}</Quote>
           <QuoteInfo {randomQuote} on:search={searchQuotesByAuthor} />
         </div>
       </div>

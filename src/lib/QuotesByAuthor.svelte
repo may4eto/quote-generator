@@ -7,7 +7,7 @@
     <h1>{quotesByAuthor[0].author}</h1>
     {#each quotesByAuthor as quote}
         <Quote>
-            {quote.text}
+            {quote.content}
         </Quote>
     {/each}
 </div>

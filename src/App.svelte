@@ -9,8 +9,8 @@
 
   let randomQuote = {}
   let quotesByAuthor = []
-  const url = "https://api.quotable.io/quotes"
-  const fetchQuote = async() => await axios.get(url + "random", {
+  const url = "https://api.quotable.io/"
+  const fetchQuote = async() => await axios.get(url + "quotes/random", {
     headers: {"Access-Control-Allow-Origin": "*"}
   })
       .then(function (response) {

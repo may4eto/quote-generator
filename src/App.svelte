@@ -92,5 +92,8 @@ error(503, "Sorry, wisdom seeker, there is a problem with the service... Please 
     max-width: 50%;
     margin-left: auto;
     margin-right: auto;
+    @media (max-width: 720px) {
+      max-width: 80%;
+    }
   }
 </style>

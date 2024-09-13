@@ -1,4 +1,6 @@
 <script>
+// @ts-nocheck
+
   import { onMount } from 'svelte'
   import Footer from "./lib/Footer.svelte"
   import axios from 'axios'
@@ -12,29 +14,32 @@
   let quotesByAuthor = []
 
   const url = "https://api.quotable.io/"
+
   const fetchQuote = async() => await axios.get(url + "random", {
     headers: {"Access-Control-Allow-Origin": "*"}
   })
       .then(function (response) {
 	      randomQuote = response.data;
       })
-      .catch(function (error) {
-	error(503, {message: 'Sorry, wisdom seeker, there is a problem with the service. Try again later.'
-	});
+      .catch(function () {
+	error(503, "Sorry, wisdom seeker, there is a problem with the service... Please try again later.");
       });
+
   const fetchQuotesByAuthor = async(author) => await axios.get(url + "quotes?author=" + author.toLowerCase().replaceAll(' ', '-'), {
     headers: {"Access-Control-Allow-Origin": "*"}
   })
       .then(function (response) {
         quotesByAuthor = [...response.data.results]
       })
-      .catch(function (error) {
-	error(503, {message: 'Sorry, wisdom seeker, there is a problem with the service. Try again later.'
-	});
+      .catch(function () {
+error(503, "Sorry, wisdom seeker, there is a problem with the service... Please try again later.");
       });
+
+  let promise = fetchQuote()
   onMount(async() => {
      fetchQuote()
   })
+
   const reloadQuote = () => {
     if (quotesByAuthor.length > 0) {
       quotesByAuthor.length = 0
@@ -42,6 +47,7 @@
       fetchQuote()
     }
   }
+
   const searchQuotesByAuthor = (event) => {
     fetchQuotesByAuthor(event.detail.text)
   }
@@ -49,22 +55,28 @@
 
 <main>
     <Button {quotesByAuthor} on:reload= {reloadQuote}/>
-  {#if randomQuote.content}
-    {#if quotesByAuthor.length === 0} 
-      <div class="home">
-        <div>
-          <Quote>{randomQuote.content}</Quote>
-          <QuoteInfo {randomQuote} on:search={searchQuotesByAuthor} />
-        </div>
-      </div>
-    {:else}
-      <QuotesByAuthor {quotesByAuthor}/>
-    {/if}
-  {:else}
+    {#await promise}
     <div class="home">
       <p>loading...</p>
     </div>
-  {/if}
+    {:then randomQuote}
+    {#if randomQuote.content}
+      {#if quotesByAuthor.length === 0} 
+        <div class="home">
+          <div>
+            <Quote>{randomQuote.content}</Quote>
+            <QuoteInfo {randomQuote} on:search={searchQuotesByAuthor} />
+          </div>
+        </div>
+      {:else}
+        <QuotesByAuthor {quotesByAuthor}/>
+      {/if}
+    {/if}
+    {:catch error}
+    <div class="home">
+      <h1 class="error">{error.body.message}</h1>
+    </div>
+    {/await}
 </main>
 <Footer />
 
@@ -76,5 +88,9 @@
     justify-content: center;
     margin-bottom: 2rem;
   }
-
+  .error {
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
 </style>

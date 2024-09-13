@@ -25,10 +25,9 @@
   })
       .then(function (response) {
         quotesByAuthor = [...response.data.results]
-        console.log(quotesByAuthor)
       })
       .catch(function (error) {
-	      console.error(error);
+	alert("Sorry, something is wrong :disappointed: Please try again later.)
       });
   onMount(async() => {
      fetchQuote()

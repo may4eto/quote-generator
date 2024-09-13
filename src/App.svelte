@@ -6,9 +6,11 @@
   import Button from './lib/Button.svelte'
   import QuoteInfo from './lib/QuoteInfo.svelte';
   import QuotesByAuthor from './lib/QuotesByAuthor.svelte'
+  import { error } from '@sveltejs/kit';
 
   let randomQuote = {}
   let quotesByAuthor = []
+
   const url = "https://api.quotable.io/"
   const fetchQuote = async() => await axios.get(url + "random", {
     headers: {"Access-Control-Allow-Origin": "*"}
@@ -17,7 +19,8 @@
 	      randomQuote = response.data;
       })
       .catch(function (error) {
-	     alert("Network error")
+	error(503, {message: 'Sorry, wisdom seeker, there is a problem with the service. Try again later.'
+	});
       });
   const fetchQuotesByAuthor = async(author) => await axios.get(url + "quotes?author=" + author.toLowerCase().replaceAll(' ', '-'), {
     headers: {"Access-Control-Allow-Origin": "*"}
@@ -26,7 +29,8 @@
         quotesByAuthor = [...response.data.results]
       })
       .catch(function (error) {
-	alert("Network error")
+	error(503, {message: 'Sorry, wisdom seeker, there is a problem with the service. Try again later.'
+	});
       });
   onMount(async() => {
      fetchQuote()

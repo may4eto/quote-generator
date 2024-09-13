@@ -17,7 +17,7 @@
 	      randomQuote = response.data;
       })
       .catch(function (error) {
-	      alert("Sorry, something is wrong :disappointed: Please try again later.)
+	      alert("Sorry, something is wrong &#128542; Please try again later.)
       });
   const fetchQuotesByAuthor = async(author) => await axios.get(url + "quotes?author=" + author.toLowerCase().replaceAll(' ', '-'), {
     headers: {"Access-Control-Allow-Origin": "*"}
@@ -26,7 +26,7 @@
         quotesByAuthor = [...response.data.results]
       })
       .catch(function (error) {
-	alert("Sorry, something is wrong :disappointed: Please try again later.)
+	alert("Sorry, something is wrong &#128542; Please try again later.)
       });
   onMount(async() => {
      fetchQuote()

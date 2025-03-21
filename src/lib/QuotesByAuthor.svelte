@@ -1,19 +1,21 @@
 <script>
     import Quote from "./Quote.svelte";
-    export let quotesByAuthor
+    export let quotesByAuthor = []
 </script>
 
-<div>
+{#if quotesByAuthor.length > 0}
+  <div class="quotes-list">
     <h1>{quotesByAuthor[0].author}</h1>
-    {#each quotesByAuthor as quote}
-        <Quote>
-            {quote.content}
-        </Quote>
+    {#each quotesByAuthor.slice(0, 8) as quote}
+        <Quote randomQuote={quote} />
     {/each}
-</div>
+  </div>
+{:else}
+  <p>No quotes found for this author.</p>
+{/if}
 
 <style>
-    div {
+    div.quotes-list {
         max-width: 50vw;
         margin:2rem auto 6rem auto;
     }
@@ -23,11 +25,11 @@
     }
 
     @media(max-width:768px) {
-    div {
+    div.quotes-list {
         max-width: 66vw;
     }
     @media(max-width:540px) {
-    div {
+    div.quotes-list {
         max-width: 100vw;
     }
     h1 {

@@ -1,10 +1,13 @@
 <script>
+  // Define the randomQuote prop
+  export let randomQuote = {};
 </script>
 
 <div class="quote">
-    <blockquote>
-      <slot></slot>
-    </blockquote>
+  <blockquote>
+    <!-- Render the quote text from the randomQuote prop -->
+    {randomQuote.text}
+  </blockquote>
 </div>
 
 <style>
@@ -24,19 +27,24 @@
   blockquote::after {
     content: '\201D';
   }
+  .author {
+    text-align: right;
+    font-style: italic;
+    color: var(--text-secondary);
+  }
 
-  @media(max-width:768px) {
+  @media (max-width: 768px) {
     .quote {
-    max-width: 75vw;
+      max-width: 75vw;
     }
   }
-  @media(max-width:540px) {
+  @media (max-width: 540px) {
     .quote {
-        max-width: 100vw;
-        padding: 0 1rem;
+      max-width: 100vw;
+      padding: 0 1rem;
     }
     blockquote {
-        padding-left: 2rem;
+      padding-left: 2rem;
     }
   }
 </style>

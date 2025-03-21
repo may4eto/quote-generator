@@ -1,31 +1,31 @@
 <script>
     import { createEventDispatcher } from 'svelte';
-import { toggle_class } from 'svelte/internal';
     const dispatch = createEventDispatcher();
-    export let randomQuote
-    const onSearchQuotesByAuthor = (event) => {
-        dispatch("search", {
-            text: event.target.childNodes[0].childNodes[0].innerHTML
-        })
-    }
-
-</script>
-
-<!-- <a href="/"> -->
-    <div class="wrapper" on:click = {onSearchQuotesByAuthor}>
-        <div class="info">
-            <p class="author">{randomQuote.author}</p>
-            <p class="tag">
-                {#each randomQuote.tags as tag}
-                    <span>{tag}</span>
-                {/each}
-            </p>
-        </div>
-        <span class="material-symbols-outlined">
-            arrow_right_alt
-        </span>
+  
+    export let randomQuote;
+  
+    const onSearchQuotesByAuthor = () => {
+      // Dispatch the "search" event with the author's name as the payload
+      dispatch('search', {
+        text: randomQuote.author_id,
+      });
+    };
+  </script>
+  
+  <div class="wrapper" on:click={onSearchQuotesByAuthor}>
+    <div class="info">
+      <p class="author">{randomQuote.author}</p>
+      <p class="tag">
+        {#if randomQuote.tags?.length > 0}
+            {#each randomQuote.tags as tag}
+                <span>{tag}</span>
+            {/each}
+        {/if}
+      </p>
     </div>
-<!-- </a> -->
+    <span class="material-symbols-outlined">arrow_right_alt</span>
+  </div>
+
 
 <style>
     /* a {
